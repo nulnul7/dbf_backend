@@ -1,0 +1,322 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Oxygen"
+}
+.appContainer{
+  width: 100%;
+  height: 100vh;
+}
+.appWrapper {
+  width: 100%;
+  max-width: 1280px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.navigation {
+  /* width: 1366px; */
+  max-width: 1280px;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  margin: 25px auto 0 auto;
+}
+.navContainer {
+  display: flex;
+}
+.navAdmin {
+  position: absolute;
+  right: 100px;
+  top: 35px;
+}
+
+label.logo {
+  font-size: 3.5em;
+  font-weight: 800;
+  margin-right: 50%;
+}
+.logoDbf {
+  color: black;
+}
+.oce {
+  color:black;
+  padding: 5px;
+}
+.oce:hover {
+  border-bottom: 2px solid greenyellow;
+  padding-bottom: 6px;
+  animation: 0.5ms ease-in-out;
+}
+.abdi {
+  background-color: greenyellow;
+}
+ul.menu {
+  display: flex;
+}
+.menu li {
+  margin: 20px 40px;
+  color: black;
+}
+
+/* Content Home */
+.mainContent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto 0;
+}
+.homeWrapper{
+  display: flex;
+  align-items: center;
+  height: 70vh;
+  margin-bottom: 55px;
+}
+.leftLink {
+  margin: 10px 0 10px 7%;
+  width: 400px;
+}
+.leftLink li {
+  margin-bottom: 25px;
+}
+.content {
+  padding-right: 100px;
+}
+
+.sideMenu {
+  color: gainsboro;
+}
+.sideMenu:hover {
+  color: greenyellow;
+}
+.active {
+  color: black;
+}
+.about {
+  padding-left: 170px;
+  font-size: 32px;
+  line-height: 1.5;
+}
+.skill img{
+  width: 72%;
+}
+
+/* portfolio */
+.pContainer{
+  width: 100%;
+  height: 76vh;
+  display: flex;
+  margin: 0 auto;
+}
+.pWrapper{
+  display: flex;
+  margin: auto;
+  width: 100%;
+  max-width: 1280px;
+}
+.pCategory{
+  height: 100%;
+  flex: 2;
+  margin: auto 0;
+}
+.pCategory > ul {
+  padding-left: 30px;
+
+}
+.category {
+  margin-bottom: 30px;
+  font-size: 12px;
+}
+.category:hover  {
+  color: greenyellow;
+  cursor: pointer;
+}
+.pContent {
+  display: flex;
+  align-items: center;
+  flex: 10;
+}
+.pLists{
+  display: flex;
+  flex-direction: column;
+  flex:5;
+  border-left: solid 1px greenyellow;
+}
+.pLists ul{
+  padding-left: 20px;
+}
+.pLists li{
+  font-size: 18px;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+.pLists li:hover{
+  color: greenyellow;
+  cursor: pointer;
+}
+.pImages{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 8;
+  padding-right: 20px;
+}
+.showImages{
+  width: 100%;
+  max-width: 630px;
+  height: 400px;
+  transition: 0.6s ease;
+  background-size: cover;
+  object-fit: cover;
+}
+.arrowNav{
+  width: 100%;
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+.arrow{
+  width: 26px;
+  margin: 0 50px;
+  cursor: pointer;
+  padding: 5px;
+}
+.arrow:hover {
+  background-color: greenyellow;
+}
+.portfDisplay{
+  display: flex;
+}
+.portf, .activeLink{
+  color: black;
+}
+.portf:hover{
+  color: greenyellow;
+}
+/* .portfType{
+  background-color: rgb(211, 253, 209);
+} */
+.linePortfolio{
+  height: 41vh;
+  width: 70px;
+  margin-top: -1vh;
+  border-left: 4px dotted greenyellow ;
+}
+.portfName{
+  margin-left: 25px;
+}
+
+/* blog */
+.blog {
+  width: 70vw;
+  margin: 90px auto 50px auto;
+}
+.blogContainer {
+  display: grid;
+  grid-template-columns: 0.75fr 0.75fr 3.5fr 2.5fr;
+  grid-gap: 15px;
+  border-bottom: solid 1px greenyellow;
+  padding-bottom: 25px;
+  padding-top: 25px;
+  cursor: pointer;
+  color: black;
+}
+.blogContainer:hover {
+  color: rgba(173, 255, 47, 0.9);
+}
+
+/* sosmed Footer*/
+
+.sosmed {
+  height: 20px;
+  margin: 30px 100px 0 auto;
+}
+.sosmed ul {
+  display: flex;
+}
+
+.icons {
+  width: 25px;
+  margin: auto 20px;
+}
+
+.icons:hover {
+  border-bottom: solid 2px greenyellow;
+  padding-bottom: 5px;
+  animation: 0.8ms;
+}
+
+
+/* modal */
+.modalContainer{
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modalPortf{
+  width: 90%;
+  height: 76%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.xMark{
+  position: absolute ;
+  right: 10px;
+  top: -30px;
+  font-weight: 700;
+  font-size: 1.4em;
+  cursor: pointer;
+}
+.xMark:hover{
+  color: greenyellow;
+}
+.contentModal{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.infoModal{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding-right: 60px;
+  flex: 1;
+}
+.titleModal{
+  font-size: 14px;
+}
+.descModal{
+  margin-top: 50px;
+}
+.pictsModal{
+  height: 90%;
+  flex: 3;
+}
+.imgModal{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: ease all 0.7;
+}
+.bulletNav{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.dot {
+  color: rgba(248, 235, 180, 0.8);
+  font-size: 1.8em;
+  margin-top: -45px;
+  margin-right: 10px;
+  cursor: pointer;
+}
