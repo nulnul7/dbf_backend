@@ -1,8 +1,7 @@
 import { React, useEffect, useState } from 'react';
 import defaultImages from '../assets/defaultImages.jpeg';
-import axios from 'axios';
-import {axiosInstance} from '../config'
 import ModalPortfolio from '../components/ModalPortfolio';
+import axiosInstance from '../config';
 
 const Portfolio = () => {
     const [portfolios, setPortfolios] = useState([])
