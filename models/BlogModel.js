@@ -1,4 +1,4 @@
-import mongoose  from 'mongoose';
+import mongoose from 'mongoose';
 
 const blogSchema = new mongoose.Schema({
     title: {
@@ -19,9 +19,13 @@ const blogSchema = new mongoose.Schema({
     },
     photos: {
         type: [String],
-        required: true
-    }
-}, {timestamps: true})
+        required: false
+    },
+    author: {
+        type: String,
+        required: false
+    },
+}, { timestamps: true })
 
 const blogModel = mongoose.model('Blog', blogSchema)
 export default blogModel;

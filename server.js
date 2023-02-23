@@ -8,7 +8,7 @@ import BlogRoute from './routes/blogRoute.js'
 import userRoute from './routes/userRoute.js';
 import authRoute from './routes/authRoute.js'
 import cookieParser from "cookie-parser";
-import cookieSession  from 'cookie-session'
+import cookies from 'cookie-parser'
 
 
 const app = express();
@@ -31,6 +31,7 @@ const connectDB = async () => {
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+app.use(cookies());
 
 app.use('/5R2I/portfolio', PortfolioRoute)
 app.use('/5R2I/blog', BlogRoute)
@@ -38,22 +39,6 @@ app.use('/5R2I/user', userRoute)
 app.use('/5R2I/auth', authRoute)
 
 
-// set client cookie
-app.set('trust proxy', 1) // trust first proxy
-
-app.use(cookieSession({
-    name:'session',
-    keys: ['key1', 'key2']
-}))
-
-app.get('/', ( req, res, next ) => {
-      // Update views
-    req.session.views = (req.session.views || 0) + 1
-
-      // Write response
-    res.end(req.session.views + ' views')
-})
-// end set client cookie
 
 
     // next error handler
@@ -69,8 +54,12 @@ app.use((err, req, res, next) => {
     })    
 })
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'))
+    app.use(express.static('admin/build'))
+}
 
-app.listen(process.env.PORT || 5500, () => {
+app.listen(port, () => {
     connectDB(),
     console.log(`Backend Server working well on port ${port}`)
 })

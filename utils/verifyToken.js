@@ -2,7 +2,7 @@ import {createError} from './error.js'
 import jwt from 'jsonwebtoken'
 
 const verifyToken = (req, res, next) => {
-    const token = req.cookies.token
+    const {token} = req.cookies
     if (!token) {
         console.log("ini isi tokennya", token);
         return next(createError(401, 'Siapa Kamu !'))
