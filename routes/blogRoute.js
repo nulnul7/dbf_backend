@@ -15,13 +15,13 @@ router.get('/:id', (req, res) => {
         .catch(err => { err.status(404).json('Terjadi ERROR :', err) })
 })
 
-router.post('/add', async (req, res) => {
-    const blog = await new Blog(req.body);
+router.post('/add', async (req, res, next) => {
+    const blog = new Blog(req.body);
     try {
-        const newBlog = blog.save();
+        const newBlog = await blog.save();
         res.status(200).json(newBlog)
     } catch (error) {
-        console.log(error.message);
+        next(error);
     }
 })
 router.delete('/del/:id', async (req, res, next) => {
@@ -38,7 +38,7 @@ router.put('/update/:id', async (req, res, next) => {
         await Blog.findByIdAndUpdate(
             req.params.id,
             { $set: req.body },
-            { action: true })
+            { new: true })
         res.status(200).json('Blog Update Done...')
     } catch (error) {
         next(error)

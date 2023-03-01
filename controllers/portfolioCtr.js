@@ -53,3 +53,16 @@ export const updatePortfolio = async (req, res, next) => {
         next(error)
     }
 }
+
+export const countByCategory = async (req, res, next) => {
+    const categories = req.query.categories.split(',')
+    try {
+        const listPortfolio = await Promise.all(categories.map(cate => {
+            return Portfolios.countDocuments({ category: cate })
+        })
+        )
+        res.status(200).json(listPortfolio)
+    } catch (err) {
+        next(err)
+    }
+}
