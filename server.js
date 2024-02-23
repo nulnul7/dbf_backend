@@ -28,7 +28,24 @@ const connectDB = async () => {
 
 // middlewares
 
-app.use(cors());
+//sama dengan kode yang dibawah
+// const allowedOrigins = ['http://localhost:3001', 'http://localhost:3000'];
+
+// app.use(cors({
+//     credentials: true,
+//     origin: function (origin, callback) {
+//         if (!origin || allowedOrigins.includes(origin)) {
+//             callback(null, true);
+//         } else {
+//             callback(new Error('Origin not allowed by CORS'));
+//         }
+//     }
+// }));
+
+app.use(cors({
+    credentials: true, origin: ['http://localhost:3001', 'http://localhost:3000', 'https://api.cloudinary.com']
+}))
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cookies());
@@ -41,7 +58,7 @@ app.use('/5R2I/auth', authRoute)
 
 
 
-    // next error handler
+// next error handler
 app.use((err, req, res, next) => {
     const status = err.status || 500;
     const message = err.message || 'terjadi Error pada BACKEND'
@@ -51,7 +68,7 @@ app.use((err, req, res, next) => {
         status: status,
         message: message,
         stack: err.stack
-    })    
+    })
 })
 
 if (process.env.NODE_ENV === 'production') {
@@ -60,7 +77,11 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.listen(port, () => {
-    connectDB(),
+    try {
+        connectDB()
+    } catch (error) {
+        console.log('error connect mongoDB');
+    }
     console.log(`Backend Server working well on port ${port}`)
 })
 

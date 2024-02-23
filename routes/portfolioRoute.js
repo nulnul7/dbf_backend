@@ -8,6 +8,7 @@ import {
     countByCategory
 } from '../controllers/portfolioCtr.js';
 import { verifyAdmin } from '../utils/verifyToken.js';
+import { verifyToken } from '../middlewares/validation.js';
 const router = express.Router();
 
 
@@ -22,7 +23,7 @@ router.get('/find/countByCategory', countByCategory)
 
 // Add portfolio
 // router.post('/add', verifyAdmin, createPortfolio)
-router.post('/add', createPortfolio)
+router.post('/add', verifyToken, createPortfolio)
 
 
 // Delete portfolio

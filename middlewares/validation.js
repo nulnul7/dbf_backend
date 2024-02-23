@@ -1,6 +1,9 @@
-const fs = require('fs')
+import { check, validationResult } from 'express-validator';
+import fs from 'fs';
+import jwt from 'jsonwebtoken';
+import userModel from '../models/UserModel.js';
 
-module.exports = (req, res, next) => {
+export const validationImages = (req, res, next) => {
     // calid req.body or req.file not get undefined
     if (typeof (req.file) === 'undefined' || typeof (req.body) === 'undefined') {
         // if error
@@ -43,4 +46,51 @@ module.exports = (req, res, next) => {
 
     next()
 
+}
+
+export const userInputValidation = [
+    check('username')
+        .trim()
+        .isLength({ min: 3, max: 20 })
+        .withMessage('minimal 3 char, max 20 char')
+        .custom(async (val) => {
+            const isUserExist = await userModel.findOne({ username: val });
+            if (isUserExist) throw new Error('username sudah ADA');
+        })
+    ,
+    check('password')
+        .trim()
+        .isLength({ min: 5, max: 20 })
+        .withMessage('password 5 sampai 20 char')
+    ,
+    check('confirmPassword')
+        .trim()
+        .not()
+        .isEmpty()
+        .custom((value, { req }) => {
+            if (value !== req.body.password) {
+                throw new Error('Password tidak match!')
+            }
+            return true
+        })
+];
+
+export const userValidation = (req, res, next) => {
+    if (!(validationResult(req).array().length)) return next(); //check ada error?? kalau tidak gaskeun! 
+    const errorResult = validationResult(req).array()[0].msg;  // kalau error, ini statusnya
+    res.status(500).json({ success: false, message: 'ini isi errornya : ', errorResult });
+}
+
+export const verifyToken = (req, res, next) => {
+    if (!req.headers['authorization']) return res.status(400).json({ message: 'error token ga ada!' })
+    const authHeader = req.headers['authorization'];
+    const token = authHeader.split(' ')[1];
+    console.log(token);
+    if (token == null) return res.sendStatus(401)
+    jwt.verify(token, process.env.SECRETKEY, (err, decoded) => {
+        if (err) return res.sendStatus(403);
+        console.log('isi decoded', decoded);
+        req.username = decoded.username
+        next()
+    })
 }

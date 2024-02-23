@@ -1,8 +1,9 @@
-import {createError} from './error.js'
+import { createError } from './error.js'
 import jwt from 'jsonwebtoken'
 
 const verifyToken = (req, res, next) => {
-    const {token} = req.cookies
+    const { token } = req.cookies
+    console.log('isi token user : ', token);
     if (!token) {
         console.log("ini isi tokennya", token);
         return next(createError(401, 'Siapa Kamu !'))

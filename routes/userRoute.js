@@ -7,14 +7,15 @@ import {
 } from '../controllers/userCtr.js'
 
 import { verifyAdmin, verifyUser } from '../utils/verifyToken.js';
+import { verifyToken } from '../middlewares/validation.js';
 
 const router = express.Router();
 
 router.get('/', verifyAdmin, getUsers)
 
-router.get('/:id',verifyAdmin, getUser)
+router.get('/:id', verifyToken, getUser)
 
-router.delete('/delete/:id',verifyAdmin, deleteUser)
+router.delete('/delete/:id', verifyAdmin, deleteUser)
 
 router.put('/update/:id', verifyUser, updateUser)
 

@@ -1,0 +1,49 @@
+GET http://localhost:5500/5R2I/auth/adminuser
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGM2ZmMyY2QyOTY0MzlkNTIyNDQ3MDYiLCJpYXQiOjE2OTA5NDc5OTksImV4cCI6MTY5MDk0ODAyNH0.Gg36RAS-k0WI2H2tYtSOhY3k_EobN2kRpzVzqrvCT7M
+
+
+###
+POST   http://localhost:5500/5R2I/auth/login
+Content-Type: application/json
+
+{
+    "username": "Mario",
+    "password": "12345"
+}
+
+
+###
+POST http://localhost:5500/5R2I/auth/register
+Content-Type: application/json
+
+{
+    "username": "Laura",
+    "password": "12345",
+    "confirmPassword": "12345",
+    "isAdmin": true
+}
+
+###
+GET http://localhost:5500/5R2I/auth/token
+
+
+###
+DELETE http://localhost:5500/5R2I/auth/logout
+
+
+###
+GET http://localhost:5500/5R2I/user/64c6fc2cd296439d52244706
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvdGhlckRldGFpbHMiOnsidXNlcm5hbWUiOiJNYXJpbyIsImlzQWRtaW4iOnRydWUsIl9fdiI6MCwicmVmcmVzaFRva2VuIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmZhV1FpT2lJMk5HTTJabU15WTJReU9UWTBNemxrTlRJeU5EUTNNRFlpTENKcFlYUWlPakUyT1RBNU5qZ3hOamtzSW1WNGNDSTZNVFk1TVRBMU5EVTJPWDAuT2pOc0VHemNIV2t0anNDMW1xLWt0YjlxWVhaUUZ1NkhFcVp2QWN5QjRPUSJ9LCJpYXQiOjE2OTA5NjgxOTgsImV4cCI6MTY5MDk2ODIxM30.uN6l8Vxeu-dVHHx2uOQf963R66zGeSci9lT25ipgFtg
+
+
+###
+POST http://localhost:5500/5R2I/portfolio/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGM2ZmMyY2QyOTY0MzlkNTIyNDQ3MDYiLCJpYXQiOjE2OTExMTk3OTQsImV4cCI6MTY5MTExOTgxOX0._XwOAGtt3jlKw-JhT7ookX5Al-Ke9hCF8macIz5y294
+
+{
+    "title": "test ting",
+    "client": "client prof",
+    "description": "ini descrpt aja",
+    "category": "photography"
+}
